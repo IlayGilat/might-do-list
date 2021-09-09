@@ -1,0 +1,7 @@
+{
+  "name": "might-do-list",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
