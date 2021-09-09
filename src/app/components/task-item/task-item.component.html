@@ -1,0 +1,10 @@
+<ion-card>
+  <ion-card-header [style.display]="'flex'" [style.justify-content]="'space-between'">
+    <ion-card-title>{{task.text}}</ion-card-title>
+    <ion-button (click)="onDelete(task)" color="primary" [style.height]="'35px'" >
+      <ion-icon name="close" ></ion-icon>
+    </ion-button>
+  </ion-card-header>
+
+
+</ion-card>
