@@ -3,7 +3,7 @@
     <ion-label>Daily Highlight</ion-label>
   </ion-card-header>
   <ion-card-content [style.display]="'flex'" [style.justify-content]="'space-between'">
-    <ion-input placeholder="Enter Daily Highlight"></ion-input>
-    <ion-checkbox color="primary"></ion-checkbox>
+    <ion-input placeholder="Enter Daily Highlight" (ionChange)="onChange()" [(ngModel)]="dailyText"></ion-input>
+    <ion-checkbox color="primary" [(ngModel)]="finished" (ionChange)="onCheking()"></ion-checkbox>
   </ion-card-content>
 </ion-card>

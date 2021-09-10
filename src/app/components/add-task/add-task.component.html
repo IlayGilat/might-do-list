@@ -1,3 +1,10 @@
-<p>
-  add-task works!
-</p>
+<form (ngSubmit)="onSubmit()" [style.padding]="'5px 20px'" [style.margin]="'20px'" >
+  <ion-input
+    class="inpt"
+    type="text"
+    [(ngModel)]="text"
+    [ngModelOptions]="{ standalone: true }"
+    placeholder="Add Task"
+    [style.border-bottom]="'5px'"
+  ></ion-input>
+</form>

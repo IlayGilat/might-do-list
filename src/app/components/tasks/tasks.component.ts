@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { TaskItemComponent } from '../task-item/task-item.component';
+import { Component, OnInit, EventEmitter} from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
+import { Observable} from 'rxjs';
 import { Task } from 'src/app/Task';
 @Component({
   selector: 'app-tasks',
@@ -13,14 +13,35 @@ export class TasksComponent implements OnInit {
 
   async ngOnInit() {
     await this.storage.create();
-    const t: Task = {id:1,text:'hello'};
-    this.myTasks.push(t);
+    const day = await this.storage.get('Date');
+    const today: string = new Date().toDateString();
+    if ( day.toString() !== today){
+      this.storage.clear();
+      this.storage.set('Date',today);
+      const temp: Task[] = [];
+      this.storage.set('myTasks',temp);
+    }else {
+      const res = await this.storage.get('myTasks');
+      const temp: Task[] = [];
+      if (!res){
+        await this.storage.set('myTasks',temp);
+      }
+
+      this.myTasks = await this.storage.get('myTasks');
+      //this.getTasks();
+      }
+    }
+
+
+
+  async deleteTask(task: Task){
+    this.myTasks = this.myTasks.filter(t => t.id !== task.id);
+    await this.storage.set('myTasks',this.myTasks);
   }
 
-
-
-  deleteTask(task: Task){
-
+   async addTask(task: Task){
+    this.myTasks.push(task);
+    await this.storage.set('myTasks',this.myTasks);
   }
 
 
